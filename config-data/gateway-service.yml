@@ -9,15 +9,15 @@ eureka:
 spring:
   cloud:
     gateway:
-        discovery:
-          locator:
-            enabled: true
-        routes:
-          - id: ms-productos
-            uri: lb://ms-productos
-            predicates:
-              - Path=/api/productos/**
-          - id: ms-pedidos
-            uri: lb://ms-pedidos
-            predicates:
-              - Path=/api/pedidos/**
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: ms-productos
+          uri: lb://ms-productos
+          predicates:
+            - Path=/api/productos/**
+        - id: ms-pedidos
+          uri: lb://ms-pedidos
+          predicates:
+            - Path=/api/pedidos/**
