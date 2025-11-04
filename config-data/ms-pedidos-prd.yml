@@ -18,3 +18,8 @@ server:
 logging:
   level:
     org.springframework.r2dbc: DEBUG
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8099/eureka/
