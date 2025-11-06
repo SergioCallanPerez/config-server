@@ -17,7 +17,9 @@ server:
 
 logging:
   level:
+    root: DEBUG
     org.springframework.r2dbc: DEBUG
+    org.example: DEBUG
 
 eureka:
   client:
