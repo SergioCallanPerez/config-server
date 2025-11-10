@@ -21,3 +21,8 @@ spring:
           uri: lb://ms-pedidos
           predicates:
             - Path=/api/pedidos/**
+        - id: oauth-server
+          uri: lb://oauth-server
+          predicates:
+            - Path=/oauth2/**
+  
