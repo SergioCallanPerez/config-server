@@ -25,5 +25,6 @@ spring:
           uri: lb://oauth-server
           predicates:
             - Path=/oauth2/**
+            - Path=/.well-known/openid-configuration
 
   
