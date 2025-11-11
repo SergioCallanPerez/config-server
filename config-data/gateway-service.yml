@@ -28,6 +28,7 @@ spring:
             - Path=/.well-known/**
             - Path=/login
           filters:
-            PreserveHostHeader
+            - PreserveHostHeader
+            - StripPrefix=0
 
   
