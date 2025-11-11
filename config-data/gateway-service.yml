@@ -22,13 +22,10 @@ spring:
           predicates:
             - Path=/api/pedidos/**
         - id: oauth-server
-          uri: lb://oauth-server
+          uri: http://oauth-server:9000
           predicates:
-            - Path=/oauth2/**
-            - Path=/.well-known/**
-            - Path=/login
+            - Path=/oauth2/**, /.well-known/**, /login
           filters:
-            - PreserveHostHeader
             - StripPrefix=0
 
   
