@@ -2,9 +2,6 @@ spring:
   application:
     name: ms-productos-v3
 
-  profiles:
-    active: dev
-
   r2dbc:
     url: ${DB_URL_PRODUCTOS_DEV}
     username: ${DB_USERNAME}
@@ -13,95 +10,16 @@ spring:
   main:
     web-application-type: reactive
 
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          # DESACTIVAR OAuth EN DESARROLLO
-          # Si pones ISSUER inválido o vacío, Spring Security se desactiva
-          issuer-uri: http://disabled
-          jwk-set-uri: http://disabled/jwks
-
-# SERVER
 server:
   port: 8086
   error:
     include-message: always
 
-# LOGGING
 logging:
-  pattern:
-    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
   level:
-    root: INFO
-    org.springframework.web: DEBUG
-    com.practica: DEBUG
     org.springframework.r2dbc: DEBUG
 
-# KAFKA
-spring.kafka:
-  bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
-
-  producer:
-    key-serializer: org.apache.kafka.common.serialization.StringSerializer
-    value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-    acks: all
-    retries: 3
-    properties:
-      enable.idempotence: true
-      max.in.flight.requests.per.connection: 5
-
-kafka:
-  topic:
-    producto-events: producto-events
-
-# EUREKA
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8099/eureka/
-
-# SWAGGER
-springdoc:
-  api-docs:
-    enabled: true
-    path: /v3/api-docs
-
-  swagger-ui:
-    enabled: true
-    path: /swagger-ui.html
-    config-url: /v3/api-docs/swagger-config
-    disable-swagger-default-url: true
-
-  cache:
-    disabled: true
-
-  enable-discovery: false
-
-# OBSERVABILITY / ACTUATOR
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-
-  endpoint:
-    health:
-      show-details: always
-
-  tracing:
-    enabled: false  # Desactivado para evitar problemas
-    sampling:
-      probability: 1.0
-
-  metrics:
-    export:
-      prometheus:
-        enabled: true
-    distribution:
-      percentiles-histogram:
-        http.server.requests: true
-
-  metrics:
-    tags:
-      application: ${spring.application.name}
